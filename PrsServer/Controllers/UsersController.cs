@@ -15,6 +15,16 @@ namespace PrsServer.Controllers {
 		private PrsDbContext db = new PrsDbContext();
 
 		[HttpGet]
+		public JsonResponse Authenticate(string username, string password) {
+			if (username == null || password == null)
+				return new JsonResponse { Code = -2, Message = "Authentication failed" };
+			var user = db.Users.SingleOrDefault(u => u.Username == username && u.Password == password);
+			if (user == null)
+				return new JsonResponse { Code = -2, Message = "Authentication failed" };
+			return new JsonResponse { Data = user };
+		}
+
+		[HttpGet]
 		public JsonResponse List() {
 			return new JsonResponse { Data = db.Users.ToList() };
 		}

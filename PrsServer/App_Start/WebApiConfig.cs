@@ -10,8 +10,16 @@ namespace PrsServer {
 			// Web API configuration and services
 			config.EnableCors();
 
+			// install-package Microsoft.AspNet.WebApi.Cors
+
 			// Web API routes
 			config.MapHttpAttributeRoutes();
+
+			config.Routes.MapHttpRoute(
+				name: "Authentication",
+				routeTemplate: "{controller}/{action}/{username}/{password}",
+				defaults: new { }
+			);
 
 			config.Routes.MapHttpRoute(
 				name: "DefaultWebApi",

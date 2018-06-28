@@ -12,7 +12,7 @@ namespace PrsServer.Models {
 		public int Id { get; set; }
 		[Required]
 		[StringLength(30)]
-		[Index(IsUnique = true)]
+		[Index("IDX_Username", IsUnique = true)]
 		public string Username { get; set; }
 		[Required]
 		[StringLength(30)]

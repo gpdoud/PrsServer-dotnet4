@@ -196,7 +196,11 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\PurchaseRequestLineitemsController.cs" />
+    <Compile Include="Controllers\PurchaseRequestsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\VendorsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -204,9 +208,33 @@
     <Compile Include="Migrations\201806262301087_init.Designer.cs">
       <DependentUpon>201806262301087_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806281418567_added vendor.cs" />
+    <Compile Include="Migrations\201806281418567_added vendor.Designer.cs">
+      <DependentUpon>201806281418567_added vendor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806281433205_added product.cs" />
+    <Compile Include="Migrations\201806281433205_added product.Designer.cs">
+      <DependentUpon>201806281433205_added product.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806281436531_added pr and prli.cs" />
+    <Compile Include="Migrations\201806281436531_added pr and prli.Designer.cs">
+      <DependentUpon>201806281436531_added pr and prli.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806281458387_remove req from phone and email.cs" />
+    <Compile Include="Migrations\201806281458387_remove req from phone and email.Designer.cs">
+      <DependentUpon>201806281458387_remove req from phone and email.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806281528342_remove datecreated from pr.cs" />
+    <Compile Include="Migrations\201806281528342_remove datecreated from pr.Designer.cs">
+      <DependentUpon>201806281528342_remove datecreated from pr.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Models\PrsDbContext.cs" />
+    <Compile Include="Models\PurchaseRequest.cs" />
+    <Compile Include="Models\PurchaseRequestLineitem.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\JsonResponse.cs" />
   </ItemGroup>
@@ -299,6 +327,21 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201806262301087_init.resx">
       <DependentUpon>201806262301087_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806281418567_added vendor.resx">
+      <DependentUpon>201806281418567_added vendor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806281433205_added product.resx">
+      <DependentUpon>201806281433205_added product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806281436531_added pr and prli.resx">
+      <DependentUpon>201806281436531_added pr and prli.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806281458387_remove req from phone and email.resx">
+      <DependentUpon>201806281458387_remove req from phone and email.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806281528342_remove datecreated from pr.resx">
+      <DependentUpon>201806281528342_remove datecreated from pr.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
