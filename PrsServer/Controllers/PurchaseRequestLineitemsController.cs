@@ -13,6 +13,15 @@ namespace PrsServer.Controllers
     {
 		private PrsDbContext db = new PrsDbContext();
 
+		private void RecalcLineItemTotal(int purchaseRequestId) {
+			var pr = db.PurchaseRequests.Find(purchaseRequestId);
+			if (pr == null) return;
+			var lines = db.PurchaseRequestLineitems
+				.Where(li => li.PurchaseRequestId == purchaseRequestId);
+			pr.Total = lines.Sum(li => li.Quantity * li.Product.Price);
+			db.SaveChanges();
+		}
+
 		[HttpGet]
 		public JsonResponse List() {
 			return new JsonResponse { Data = db.PurchaseRequestLineitems.ToList() };
@@ -34,6 +43,9 @@ namespace PrsServer.Controllers
 				return new JsonResponse { Code = -200, Message = $"ModelState is invalid", Error = ModelState };
 			db.PurchaseRequestLineitems.Add(purchaseRequestLineitem);
 			var recsAffected = db.SaveChanges();
+
+			RecalcLineItemTotal(purchaseRequestLineitem.PurchaseRequestId);
+
 			return new JsonResponse { Message = "PurchaseRequestLineitem create successful!", Data = purchaseRequestLineitem };
 		}
 		[HttpPost]
@@ -45,6 +57,9 @@ namespace PrsServer.Controllers
 			db.PurchaseRequestLineitems.Attach(purchaseRequestLineitem);
 			db.Entry(purchaseRequestLineitem).State = System.Data.Entity.EntityState.Modified;
 			var recsAffected = db.SaveChanges();
+
+			RecalcLineItemTotal(purchaseRequestLineitem.PurchaseRequestId);
+
 			return new JsonResponse { Message = "PurchaseRequestLineitem change successful!", Data = purchaseRequestLineitem };
 		}
 		[HttpPost]
@@ -54,6 +69,9 @@ namespace PrsServer.Controllers
 			db.PurchaseRequestLineitems.Attach(purchaseRequestLineitem);
 			db.Entry(purchaseRequestLineitem).State = System.Data.Entity.EntityState.Deleted;
 			var recsAffected = db.SaveChanges();
+
+			RecalcLineItemTotal(purchaseRequestLineitem.PurchaseRequestId);
+
 			return new JsonResponse { Message = "PurchaseRequestLineitem remove successful!", Data = purchaseRequestLineitem };
 		}
 	}
