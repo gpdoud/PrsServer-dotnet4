@@ -10,6 +10,7 @@ using System.Web.Http.Cors;
 
 namespace PrsServer.Controllers {
 
+	[EnableCors(origins: "*", headers: "*", methods: "*")]
 	public class UsersController : ApiController {
 
 		private PrsDbContext db = new PrsDbContext();
