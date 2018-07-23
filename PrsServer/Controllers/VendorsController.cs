@@ -9,7 +9,8 @@ using System.Web.Http;
 
 namespace PrsServer.Controllers
 {
-    public class VendorsController : ApiController
+	[EnableCors(origins: "*", headers: "*", methods: "*")]
+	public class VendorsController : ApiController
     {
 		private PrsDbContext db = new PrsDbContext();
 
