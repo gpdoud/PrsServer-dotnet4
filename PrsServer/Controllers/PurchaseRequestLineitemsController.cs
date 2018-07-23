@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace PrsServer.Controllers
 {
-    public class PurchaseRequestLineitemsController : ApiController
+	[EnableCors(origins: "*", headers: "*", methods: "*")]
+	public class PurchaseRequestLineitemsController : ApiController
     {
 		private PrsDbContext db = new PrsDbContext();
 
