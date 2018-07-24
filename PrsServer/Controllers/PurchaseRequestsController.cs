@@ -40,6 +40,7 @@ namespace PrsServer.Controllers
 		}
 		[HttpPost]
 		public JsonResponse Change(PurchaseRequest purchaseRequest) {
+			purchaseRequest.User = null;
 			if (purchaseRequest == null)
 				return new JsonResponse { Code = -100, Message = $"purchaseRequest cannot be null" };
 			if (!ModelState.IsValid)

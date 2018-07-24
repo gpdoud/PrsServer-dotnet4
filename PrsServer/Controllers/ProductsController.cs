@@ -40,6 +40,7 @@ namespace PrsServer.Controllers
 		}
 		[HttpPost]
 		public JsonResponse Change(Product product) {
+			product.Vendor = null;
 			if (product == null)
 				return new JsonResponse { Code = -100, Message = $"product cannot be null" };
 			if (!ModelState.IsValid)
